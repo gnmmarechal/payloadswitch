@@ -19,7 +19,7 @@ if System.doesFileExist("/arm9loaderhax.bin") or System.doesFileExist("/arm9load
 		outstream = io.open("/payloadswitch-out.cfg",FREAD)
 		renamedpayload = io.read(outstream,0,io.size(outstream))
 	end
-	if not originalpayload == nil and not renamedpayload == nil then
+	if System.doesFileExist(originalpayload) and System.doesFileExist(renamedpayload) then
 		System.renameFile(originalpayload, "/temppayload.bin")
 		System.renameFile(renamedpayload, originalpayload)
 		System.renameFile("/temppayload.bin", renamedpayload)
