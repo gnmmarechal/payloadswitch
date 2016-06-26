@@ -6,7 +6,7 @@ version = "1.0"
 if System.doesFileExist("/arm9loaderhax.bin") or System.doesFileExist("/arm9loaderhax_si.bin") then
 	if System.doesFileExist("/arm9loaderhax.bin") then
 		originalpayload = "/arm9loaderhax.bin"
-	elseif System.doesFileExist("/arm9loaderhax_si.bin")
+	elseif System.doesFileExist("/arm9loaderhax_si.bin") then
 		originalpayload = "/arm9loaderhax_si.bin"
 	end
 	if System.doesFileExist("/payloadswitch-in.cfg") then
