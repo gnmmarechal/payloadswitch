@@ -13,7 +13,6 @@ First, install the CIA using FBI/NASA/DevMenu/whatever.
 2)Create a file named "/payloadswitch-in.cfg" and write the path there (ex. "/banana.bin")
 3)Run the app whenever you want to switch, and reboot the console.
 
-####If your secondary payload is named something else (ex. "/somepayload.bin")
+###If your secondary payload is named something else (ex. "/somepayload.bin")
 1)Create a file named "/payloadswitch-out.cfg" and write the path there (ex. "/somepayload.bin")
 2)Use the app.
-
