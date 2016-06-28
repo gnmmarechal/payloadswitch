@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.0"
+version = "1.1"
 if System.doesFileExist("/arm9loaderhax.bin") or System.doesFileExist("/arm9loaderhax_si.bin") then
 	if System.doesFileExist("/arm9loaderhax.bin") then
 		originalpayload = "/arm9loaderhax.bin"
@@ -25,4 +25,13 @@ if System.doesFileExist("/arm9loaderhax.bin") or System.doesFileExist("/arm9load
 		System.renameFile("/temppayload.bin", renamedpayload)
 	end
 end
-System.exit()
+
+while true do
+	pad = Controls.read()
+	
+	if Controls.check(pad,KEY_L) then
+		System.exit()
+	else
+		System.reboot()
+	end
+end
