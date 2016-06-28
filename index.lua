@@ -39,14 +39,14 @@ if not System.doesFileExist("/payloadswitch-mode.cfg") then
 	writecfg()
 end
 checkcfg()
-if Controls.check(pad,KEY_R) then
+if Controls.check(pad,KEY_R) and Controls.check(pad, KEY_X) then
 	if cfgmode == "normal" then
 		cfgmode = "alternate"
 	else
 		cfgmode = "normal"
 	end
 end
-if Controls.check(pad,KEY_Y) then
+if Controls.check(pad,KEY_Y) and Controls.check(pad, KEY_X) then
 	cfgmode = "mixed"
 end
 if cfgmode == "normal" or cfgmode == "mixed" then
