@@ -16,3 +16,6 @@ First, install the CIA using FBI/NASA/DevMenu/whatever.
 ###If your secondary payload is named something else (ex. "/somepayload.bin")
 1)Create a file named "/payloadswitch-out.cfg" and write the path there (ex. "/somepayload.bin")
 2)Use the app.
+
+###To stop the console from rebooting when using this (on v1.1 or later)
+Just hold the L button while running it.
