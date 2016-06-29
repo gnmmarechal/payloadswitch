@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.2"
+version = "1.2.1"
 --Debug and Tester Stuff
 isupdate = 0
 debugmode = 0
@@ -13,7 +13,21 @@ end
 
 --Start of interesting stuff
 pad = Controls.read()
+checkconfigentry()
 
+function checkconfigentry()
+	if Controls.check(pad, KEY_START) and Controls.check(pad, KEY_SELECT) then
+		configmenu()
+		System.exit()
+	end
+end
+function configmenu()
+
+end
+function uihead()
+	Screen.debugPrint(0,0,"Quick Payload Switcher v."..version, white, TOP_SCREEN)
+	Screen.debugPrint(0,20,"==============================", red, TOP_SCREEN)	
+end
 function writecfg()
 	modestream = io.open("/payloadswitch-mode.cfg",FCREATE)
 	io.write(modestream,0,"normal", 6)
@@ -83,7 +97,7 @@ if cfgmode == "alternate" or cfgmode == "mixed" then
 	end
 	System.renameFile(inputpayload, targetpayload)
 end
-	
+
 if Controls.check(pad,KEY_L) then
 	System.exit()
 else
