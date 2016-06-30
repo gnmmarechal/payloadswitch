@@ -25,8 +25,8 @@ function configmenu()
 
 end
 function uihead()
-	Screen.debugPrint(0,0,"Quick Payload Switcher v."..version, white, TOP_SCREEN)
-	Screen.debugPrint(0,20,"==============================", red, TOP_SCREEN)	
+	Screen.debugPrint(0,0,"Quick Payload Switcher v."..version.." Config", white, TOP_SCREEN)
+	Screen.debugPrint(0,20,"==============================", red, TOP_SCREEN)
 end
 function writecfg()
 	modestream = io.open("/payloadswitch-mode.cfg",FCREATE)
