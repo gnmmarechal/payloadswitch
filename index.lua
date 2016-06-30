@@ -13,7 +13,6 @@ end
 
 --Start of interesting stuff
 pad = Controls.read()
-checkconfigentry()
 
 function checkconfigentry()
 	if Controls.check(pad, KEY_START) and Controls.check(pad, KEY_SELECT) then
