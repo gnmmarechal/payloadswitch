@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.2.1"
+version = "1.3"
 --Debug and Tester Stuff
 isupdate = 0
 debugmode = 0
@@ -78,6 +78,19 @@ if cfgmode == "normal" or cfgmode == "mixed" then
 		elseif System.doesFileExist("/payloadswitch-out.cfg") then
 			outstream = io.open("/payloadswitch-out.cfg",FREAD)
 			renamedpayload = io.read(outstream,0,io.size(outstream))
+		end
+		-- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
+		if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
+			renamedpayload = "/arm9loaderhax_switch_up.bin"
+		end
+		if System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
+			renamedpayload = "/arm9loaderhax_switch_down.bin"
+		end
+		if System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
+			renamedpayload = "/arm9loaderhax_switch_left.bin"
+		end
+		if System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
+			renamedpayload = "/arm9loaderhax_switch_right.bin"
 		end
 		if System.doesFileExist(originalpayload) and System.doesFileExist(renamedpayload) then
 			System.renameFile(originalpayload, "/temppayload.bin")
