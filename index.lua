@@ -48,6 +48,11 @@ function checkcfg()
 		checkcfg()
 	end
 end
+function switch(paytoswitch)
+	System.renameFile(renamedpayload,"TEMPPAYLOAD2.bin")
+	System.renameFile(paytoswitch,renamedpayload)
+	System.renameFile("TEMPPAYLOAD2.bin",paytoswitch)
+end
 if not System.doesFileExist("/payloadswitch-mode.cfg") then
 	writecfg()
 end
@@ -81,16 +86,13 @@ if cfgmode == "normal" or cfgmode == "mixed" then
 		end
 		-- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
 		if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
-			renamedpayload = "/arm9loaderhax_switch_up.bin"
-		end
-		if System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
-			renamedpayload = "/arm9loaderhax_switch_down.bin"
-		end
-		if System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
-			renamedpayload = "/arm9loaderhax_switch_left.bin"
-		end
-		if System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
-			renamedpayload = "/arm9loaderhax_switch_right.bin"
+			switch("/arm9loaderhax_switch_up.bin")
+		elseif System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
+			switch("/arm9loaderhax_switch_down.bin")
+		elseif System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
+			switch("/arm9loaderhax_switch_left.bin")
+		elseif System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
+			switch("/arm9loaderhax_switch_right.bin")
 		end
 		if System.doesFileExist(originalpayload) and System.doesFileExist(renamedpayload) then
 			System.renameFile(originalpayload, "/temppayload.bin")
