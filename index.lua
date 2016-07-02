@@ -5,7 +5,7 @@
 version = "1.3"
 --Debug and Tester Stuff
 isupdate = 0
-debugmode = 0
+debugmode = 1
 if isupdate == 0 and debugmode == 1 and System.doesFileExist("/payloadswitch/index.lua") then
 	dofile("/payloadswitch/index.lua")
 end
@@ -49,9 +49,9 @@ function checkcfg()
 	end
 end
 function switch(paytoswitch)
-	System.renameFile(renamedpayload,"TEMPPAYLOAD2.bin")
+	System.renameFile(renamedpayload,"/TEMPPAYLOAD2.bin")
 	System.renameFile(paytoswitch,renamedpayload)
-	System.renameFile("TEMPPAYLOAD2.bin",paytoswitch)
+	System.renameFile("/TEMPPAYLOAD2.bin",paytoswitch)
 end
 if not System.doesFileExist("/payloadswitch-mode.cfg") then
 	writecfg()
@@ -64,36 +64,41 @@ if Controls.check(pad,KEY_R) and Controls.check(pad, KEY_X) then
 		cfgmode = "normal"
 	end
 end
+--Stuff
+if System.doesFileExist("/arm9loaderhax.bin") then
+	originalpayload = "/arm9loaderhax.bin"
+elseif System.doesFileExist("/arm9loaderhax_si.bin") then
+	originalpayload = "/arm9loaderhax_si.bin"
+end
+if System.doesFileExist("/payloadswitch-in.cfg") then
+	instream = io.open("/payloadswitch-in.cfg",FREAD)
+	originalpayload = io.read(instream,0,io.size(instream))
+end
+if System.doesFileExist("/arm9loaderhax_switch.bin") then
+	renamedpayload = "/arm9loaderhax_switch.bin"
+elseif System.doesFileExist("/payloadswitch-out.cfg") then
+	outstream = io.open("/payloadswitch-out.cfg",FREAD)
+	renamedpayload = io.read(outstream,0,io.size(outstream))
+end
+-- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
+if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
+	System.renameFile(renamedpayload, "/temppayload.bin")
+	System.renameFile("/arm9loaderhax_switch_up.bin", renamedpayload)
+	System.renameFile("/temppayload.bin", "/arm9loaderhax_switch_up.bin")
+	
+elseif System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
+	switch("/arm9loaderhax_switch_down.bin")
+elseif System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
+	switch("/arm9loaderhax_switch_left.bin")
+elseif System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
+	switch("/arm9loaderhax_switch_right.bin")
+end
 if Controls.check(pad,KEY_Y) and Controls.check(pad, KEY_X) then
 	cfgmode = "mixed"
 end
 if cfgmode == "normal" or cfgmode == "mixed" then
 	if System.doesFileExist("/arm9loaderhax.bin") or System.doesFileExist("/arm9loaderhax_si.bin") then
-		if System.doesFileExist("/arm9loaderhax.bin") then
-			originalpayload = "/arm9loaderhax.bin"
-		elseif System.doesFileExist("/arm9loaderhax_si.bin") then
-			originalpayload = "/arm9loaderhax_si.bin"
-		end
-		if System.doesFileExist("/payloadswitch-in.cfg") then
-			instream = io.open("/payloadswitch-in.cfg",FREAD)
-			originalpayload = io.read(instream,0,io.size(instream))
-		end
-		if System.doesFileExist("/arm9loaderhax_switch.bin") then
-			renamedpayload = "/arm9loaderhax_switch.bin"
-		elseif System.doesFileExist("/payloadswitch-out.cfg") then
-			outstream = io.open("/payloadswitch-out.cfg",FREAD)
-			renamedpayload = io.read(outstream,0,io.size(outstream))
-		end
-		-- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
-		if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
-			switch("/arm9loaderhax_switch_up.bin")
-		elseif System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
-			switch("/arm9loaderhax_switch_down.bin")
-		elseif System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
-			switch("/arm9loaderhax_switch_left.bin")
-		elseif System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
-			switch("/arm9loaderhax_switch_right.bin")
-		end
+
 		if System.doesFileExist(originalpayload) and System.doesFileExist(renamedpayload) then
 			System.renameFile(originalpayload, "/temppayload.bin")
 			System.renameFile(renamedpayload, originalpayload)
