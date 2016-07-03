@@ -6,7 +6,7 @@ version = "1.3"
 switchmode = 0
 --Debug and Tester Stuff
 isupdate = 0
-debugmode = 1
+debugmode = 0
 if isupdate == 0 and debugmode == 1 and System.doesFileExist("/payloadswitch/index.lua") then
 	dofile("/payloadswitch/index.lua")
 end
