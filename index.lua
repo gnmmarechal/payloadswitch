@@ -3,6 +3,7 @@
 -- http://gs2012.xyz
 
 version = "1.3"
+switchmode = 0
 --Debug and Tester Stuff
 isupdate = 0
 debugmode = 1
@@ -21,7 +22,9 @@ function checkconfigentry()
 	end
 end
 function configmenu()
-
+	while true do
+		
+	end
 end
 function uihead()
 	Screen.debugPrint(0,0,"Quick Payload Switcher v."..version.." Config", white, TOP_SCREEN)
@@ -48,15 +51,32 @@ function checkcfg()
 		checkcfg()
 	end
 end
-function switch(paytoswitch)
-	System.renameFile(renamedpayload,"/TEMPPAYLOAD2.bin")
-	System.renameFile(paytoswitch,renamedpayload)
-	System.renameFile("/TEMPPAYLOAD2.bin",paytoswitch)
+function switchalt(paytoswitch)
+	System.renameFile(renamedpayload, "/temppayload.bin")
+	System.renameFile(paytoswitch, renamedpayload)
+	System.renameFile("/temppayload.bin", paytoswitch)
+end
+function switchnorm(paytoswitch)
+	renamedpayload = paytoswitch
+end
+function switchpay(paytoswitch,mode)
+	if mode == 0 then
+		--Normal behaviour
+		switchnorm(paytoswitch)
+	else
+		--Alternate behaviour
+		switchalt(paytoswitch)
+	end
 end
 if not System.doesFileExist("/payloadswitch-mode.cfg") then
 	writecfg()
 end
 checkcfg()
+if System.doesFileExist("/payloadswitch/switchalt") then
+	switchmode = 1
+else
+	switchmode = 0
+end
 if Controls.check(pad,KEY_R) and Controls.check(pad, KEY_X) then
 	if cfgmode == "normal" then
 		cfgmode = "alternate"
@@ -82,16 +102,13 @@ elseif System.doesFileExist("/payloadswitch-out.cfg") then
 end
 -- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
 if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
-	System.renameFile(renamedpayload, "/temppayload.bin")
-	System.renameFile("/arm9loaderhax_switch_up.bin", renamedpayload)
-	System.renameFile("/temppayload.bin", "/arm9loaderhax_switch_up.bin")
-	
+	switchpay("/arm9loaderhax_switch_up.bin")
 elseif System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
-	switch("/arm9loaderhax_switch_down.bin")
+	switchpay("/arm9loaderhax_switch_down.bin")
 elseif System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
-	switch("/arm9loaderhax_switch_left.bin")
+	switchpay("/arm9loaderhax_switch_left.bin")
 elseif System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
-	switch("/arm9loaderhax_switch_right.bin")
+	switchpay("/arm9loaderhax_switch_right.bin")
 end
 if Controls.check(pad,KEY_Y) and Controls.check(pad, KEY_X) then
 	cfgmode = "mixed"
