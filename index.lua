@@ -102,13 +102,13 @@ elseif System.doesFileExist("/payloadswitch-out.cfg") then
 end
 -- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
 if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
-	switchpay("/arm9loaderhax_switch_up.bin")
+	switchpay("/arm9loaderhax_switch_up.bin",switchmode)
 elseif System.doesFileExist("/arm9loaderhax_switch_down.bin") and Controls.check(pad, KEY_DDOWN) then
-	switchpay("/arm9loaderhax_switch_down.bin")
+	switchpay("/arm9loaderhax_switch_down.bin",switchmode)
 elseif System.doesFileExist("/arm9loaderhax_switch_left.bin") and Controls.check(pad, KEY_DLEFT) then
-	switchpay("/arm9loaderhax_switch_left.bin")
+	switchpay("/arm9loaderhax_switch_left.bin",switchmode)
 elseif System.doesFileExist("/arm9loaderhax_switch_right.bin") and Controls.check(pad, KEY_DRIGHT) then
-	switchpay("/arm9loaderhax_switch_right.bin")
+	switchpay("/arm9loaderhax_switch_right.bin",switchmode)
 end
 if Controls.check(pad,KEY_Y) and Controls.check(pad, KEY_X) then
 	cfgmode = "mixed"
