@@ -13,6 +13,12 @@ First, install the CIA using FBI/NASA/DevMenu/whatever.
 2)Create a file named "/payloadswitch-in.cfg" and write the path there (ex. "/banana.bin")
 3)Run the app whenever you want to switch, and reboot the console.
 
+###If you want to switch with more payloads
+1)Name your other payloads "/arm9loaderhax_switch_up.bin", "/arm9loaderhax_switch_down.bin", "/arm9loaderhax_switch_left.bin" and/or "/arm9loaderhax_switch_right.bin".
+
+2)To switch to them, just hold the correct DPAD button while starting the application. This will make the app replace your main payload (ex. /arm9loaderhax.bin) with that payload (ex. /arm9loadrhax_switch_up.bin").
+
+
 ###If your secondary payload is named something else (ex. "/somepayload.bin")
 1)Create a file named "/payloadswitch-out.cfg" and write the path there (ex. "/somepayload.bin")
 2)Use the app.
