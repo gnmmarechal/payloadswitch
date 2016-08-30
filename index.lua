@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.3"
+version = "1.4"
 switchmode = 0
 --Debug and Tester Stuff
 isupdate = 0
@@ -89,16 +89,22 @@ if System.doesFileExist("/arm9loaderhax.bin") then
 	originalpayload = "/arm9loaderhax.bin"
 elseif System.doesFileExist("/arm9loaderhax_si.bin") then
 	originalpayload = "/arm9loaderhax_si.bin"
+else
+	nostandardpayloadin = 1
 end
 if System.doesFileExist("/payloadswitch-in.cfg") then
 	instream = io.open("/payloadswitch-in.cfg",FREAD)
 	originalpayload = io.read(instream,0,io.size(instream))
+elseif nostandardpayloadin == 1 then
+	error("No input payload detected.")
 end
 if System.doesFileExist("/arm9loaderhax_switch.bin") then
 	renamedpayload = "/arm9loaderhax_switch.bin"
 elseif System.doesFileExist("/payloadswitch-out.cfg") then
 	outstream = io.open("/payloadswitch-out.cfg",FREAD)
 	renamedpayload = io.read(outstream,0,io.size(outstream))
+else
+	error("No output payload detected.")
 end
 -- Adding support for more payloads, with DPAD! This isn't pretty, but does the job well enough.
 if System.doesFileExist("/arm9loaderhax_switch_up.bin") and Controls.check(pad, KEY_DUP) then
