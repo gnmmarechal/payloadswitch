@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.4"
+version = "1.3.1"
 switchmode = 0
 --Debug and Tester Stuff
 isupdate = 0
