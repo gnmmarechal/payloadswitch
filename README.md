@@ -1,10 +1,10 @@
 # Quick Payload Switcher
-Quick Payload Switcher for A9LH. It can switch between payloads (to switch between CFWs), and it can rename arm9loaderhax.bin to arm9loaderhax_si.bin and vice-versa. Please Read the documentation below.
+Quick Payload Switcher for A9LH and B9S. It can switch between payloads (to switch between CFWs), and it can rename arm9loaderhax.bin to arm9loaderhax_si.bin and vice-versa. Please Read the documentation below.
 
 ##Usage (Payload Switcher)
 First, install the CIA using FBI/NASA/DevMenu/whatever.
 
-###If your original payload is named "/arm9loaderhax.bin" or "/arm9loaderhax_si.bin"
+###If your original payload is named "/arm9loaderhax.bin", "/arm9loaderhax_si.bin" or "boot.firm"
 1)Name your secondary payload (the one you want to quickswitch) "/arm9loaderhax_switch.bin".
 2)Run the app whenever you want to switch, and reboot the console.
 
@@ -14,7 +14,7 @@ First, install the CIA using FBI/NASA/DevMenu/whatever.
 3)Run the app whenever you want to switch, and reboot the console.
 
 ###If you want to switch with more payloads
-1)Name your other payloads "/arm9loaderhax_switch_up.bin", "/arm9loaderhax_switch_down.bin", "/arm9loaderhax_switch_left.bin" and/or "/arm9loaderhax_switch_right.bin".
+1)Name your other payloads "/arm9loaderhax_switch_up.bin", "/arm9loaderhax_switch_down.bin", "/arm9loaderhax_switch_left.bin" and/or "/arm9loaderhax_switch_right.bin". (This applies even if the user has B9S and not A9LH, name the other payloads like this)
 
 2)To switch to them, just hold the correct DPAD button while starting the application. This will make the app replace your main payload (ex. /arm9loaderhax.bin) with that payload (ex. /arm9loadrhax_switch_up.bin").
 
