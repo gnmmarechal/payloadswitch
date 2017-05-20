@@ -137,7 +137,9 @@ if cfgmode == "alternate" or cfgmode == "mixed" then
 		targetpayload = "/arm9loaderhax_si.bin"
 	elseif System.doesFileExist("/arm9loaderhax_si.bin") then
 		targetpayload = "/arm9loaderhax.bin"
-		inputpayload = "/arm9loaderhax_si.bin"	
+		inputpayload = "/arm9loaderhax_si.bin"
+	else
+		return
 	end
 	System.renameFile(inputpayload, targetpayload)
 end
