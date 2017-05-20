@@ -2,7 +2,7 @@
 -- By gnmmarechal
 -- http://gs2012.xyz
 
-version = "1.3.1"
+version = "1.4"
 switchmode = 0
 --Debug and Tester Stuff
 isupdate = 0
@@ -89,6 +89,8 @@ if System.doesFileExist("/arm9loaderhax.bin") then
 	originalpayload = "/arm9loaderhax.bin"
 elseif System.doesFileExist("/arm9loaderhax_si.bin") then
 	originalpayload = "/arm9loaderhax_si.bin"
+elseif System.doesFileExist("/boot.firm") then
+	originalpayload = "/boot.firm"
 else
 	nostandardpayloadin = 1
 end
@@ -133,7 +135,7 @@ if cfgmode == "alternate" or cfgmode == "mixed" then
 	if System.doesFileExist("/arm9loaderhax.bin") then
 		inputpayload = "/arm9loaderhax.bin"
 		targetpayload = "/arm9loaderhax_si.bin"
-	else
+	elseif System.doesFileExist("/arm9loaderhax_si.bin") then
 		targetpayload = "/arm9loaderhax.bin"
 		inputpayload = "/arm9loaderhax_si.bin"	
 	end
